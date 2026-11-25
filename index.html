@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Ek Special Surprise Aane Wala Hai...</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="ambient-layer" aria-hidden="true"></div>
+
+  <button id="music-toggle" class="music-btn" type="button" aria-label="Music On/Off" title="Music On/Off">
+    <span class="music-icon">🔇</span>
+    <span class="music-label">Music Off</span>
+  </button>
+  <audio id="bg-music" loop preload="none"></audio>
+
+  <section id="stage-1" class="stage active" aria-label="Birthday Countdown">
+    <div class="curtain curtain-left"></div>
+    <div class="curtain curtain-right"></div>
+
+    <div class="countdown-wrapper">
+      <div class="countdown-card">
+        <p class="top-heading-tag">✨ SPECIAL BIRTHDAY COUNTDOWN ✨</p>
+        <h1 class="stage1-title">Ek Special Surprise Aane Wala Hai...</h1>
+        <p class="stage1-subtitle">Bas thoda sa intezaar karo!</p>
+
+        <div class="timer-grid" role="timer" aria-live="polite">
+          <div class="time-box">
+            <span id="cd-days" class="time-num">00</span>
+            <span class="time-label">Days</span>
+          </div>
+          <div class="time-sep">:</div>
+          <div class="time-box">
+            <span id="cd-hours" class="time-num">00</span>
+            <span class="time-label">Hours</span>
+          </div>
+          <div class="time-sep">:</div>
+          <div class="time-box">
+            <span id="cd-minutes" class="time-num">00</span>
+            <span class="time-label">Minutes</span>
+          </div>
+          <div class="time-sep">:</div>
+          <div class="time-box">
+            <span id="cd-seconds" class="time-num">00</span>
+            <span class="time-label">Seconds</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stage-2" class="stage hidden" aria-label="Bow Balloon and Heart Tree">
+    <div class="scrapbook-frame">
+      <p class="frame-top-heading">🎉 BIRTHDAY SURPRISE 🎉</p>
+
+      <div id="stage2-part-a" class="sub-view">
+        <div class="cupid-arena" id="cupid-arena">
+          <div id="bow-wrapper" class="bow-wrapper" role="button" tabindex="0" aria-label="Bow">
+            <svg id="bow-svg" class="bow-svg" viewBox="0 0 150 170" fill="none">
+              <path id="bow-limb" d="M102 16 C32 45, 32 125, 102 154" stroke="#8d3b52" stroke-width="7" stroke-linecap="round"/>
+              <path d="M102 16 C38 47, 38 123, 102 154" stroke="#f7b2c4" stroke-width="3" stroke-linecap="round"/>
+              <path id="bow-string-path" d="M102 16 L102 85 L102 154" stroke="#fff5f7" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="102" cy="16" r="5" fill="#ffd166"/>
+              <circle cx="102" cy="154" r="5" fill="#ffd166"/>
+            </svg>
+            <div id="flying-arrow" class="flying-arrow">
+              <svg viewBox="0 0 140 30" fill="none">
+                <line x1="10" y1="15" x2="115" y2="15" stroke="#8d3b52" stroke-width="4" stroke-linecap="round"/>
+                <polygon points="112,6 136,15 112,24" fill="#ff3b6b"/>
+                <polygon points="10,15 2,7 18,7 24,15" fill="#ff8fab"/>
+                <polygon points="10,15 2,23 18,23 24,15" fill="#ff8fab"/>
+              </svg>
+            </div>
+          </div>
+
+          <button id="target-balloon-btn" class="target-balloon-btn" type="button" aria-label="Balloon">
+            <div class="target-balloon-sphere">
+              <span class="balloon-shine"></span>
+            </div>
+            <div class="target-balloon-knot"></div>
+            <div class="target-balloon-string"></div>
+          </button>
+
+          <div id="heart-burst-layer" class="burst-layer"></div>
+        </div>
+
+        <h2 id="stage2-title" class="letter-reveal-title" aria-live="polite"></h2>
+      </div>
+
+      <div id="stage2-part-b" class="sub-view hidden">
+        <div class="tree-scene">
+          <svg id="heart-tree-svg" viewBox="0 0 360 390" class="heart-tree-svg">
+            <ellipse cx="180" cy="364" rx="95" ry="14" fill="rgba(181, 23, 72, 0.14)"/>
+            <g id="tree-trunk-group" class="tree-trunk-group">
+              <path d="M164 362 Q170 290 168 230 Q145 195 102 168 Q138 175 168 202 Q165 155 142 115 Q168 142 180 178 Q192 140 218 112 Q196 155 192 200 Q222 174 260 165 Q218 196 194 230 Q192 290 198 362 Z" fill="#6f4536"/>
+              <path d="M148 152 Q115 135 88 136" stroke="#6f4536" stroke-width="7" stroke-linecap="round" fill="none"/>
+              <path d="M212 150 Q246 132 274 134" stroke="#6f4536" stroke-width="7" stroke-linecap="round" fill="none"/>
+              <path d="M180 165 Q180 120 180 88" stroke="#6f4536" stroke-width="8" stroke-linecap="round" fill="none"/>
+              <path d="M132 185 Q100 185 78 196" stroke="#6f4536" stroke-width="6" stroke-linecap="round" fill="none"/>
+              <path d="M228 185 Q260 185 282 196" stroke="#6f4536" stroke-width="6" stroke-linecap="round" fill="none"/>
+            </g>
+            <g id="tree-hearts-canopy"></g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stage-3" class="stage hidden" aria-label="Birthday Cake">
+    <div class="scrapbook-frame cake-frame">
+      <p class="frame-top-heading">🎂 BIRTHDAY CAKE TIME 🎂</p>
+
+      <div class="cake-stage-area">
+        <div id="candles-row" class="candles-row">
+          <div class="candle-unit" data-candle="1">
+            <div class="flame" id="flame-1"></div>
+            <div class="smoke" id="smoke-1"></div>
+            <div class="wick"></div>
+            <div class="candle-body c-pink"></div>
+          </div>
+          <div class="candle-unit" data-candle="2">
+            <div class="flame" id="flame-2"></div>
+            <div class="smoke" id="smoke-2"></div>
+            <div class="wick"></div>
+            <div class="candle-body c-lavender"></div>
+          </div>
+          <div class="candle-unit" data-candle="3">
+            <div class="flame" id="flame-3"></div>
+            <div class="smoke" id="smoke-3"></div>
+            <div class="wick"></div>
+            <div class="candle-body c-peach"></div>
+          </div>
+        </div>
+
+        <div id="cake-assembly" class="cake-assembly">
+          <div id="cake-top-decor" class="cake-layer cake-top-decor">
+            <span class="cherry ch1">🍒</span>
+            <span class="cherry ch2">🍓</span>
+            <span class="cherry ch3">🍒</span>
+          </div>
+          <div id="cake-tier-top" class="cake-layer cake-tier-top">
+            <div class="icing-drips"></div>
+          </div>
+          <div id="cake-tier-mid" class="cake-layer cake-tier-mid">
+            <div class="icing-drips cream-drip"></div>
+          </div>
+          <div id="cake-tier-base" class="cake-layer cake-tier-base">
+            <div class="icing-drips"></div>
+            <div class="ribbon-band"></div>
+          </div>
+          <div id="cake-plate" class="cake-plate"></div>
+        </div>
+      </div>
+
+      <p id="candle-instruction" class="candle-instruction hidden">Chalo, ab candles blow karo!</p>
+      <div id="cake-birthday-msg" class="cake-birthday-msg hidden"></div>
+    </div>
+  </section>
+
+  <section id="stage-4" class="stage hidden" aria-label="Five Balloons and Notes">
+    <div class="scrapbook-frame balloons-frame">
+      <p class="frame-top-heading">🎈 FIVE SURPRISE BALLOONS 🎈</p>
+      <div id="balloons-sky" class="balloons-sky"></div>
+      <div id="notes-stack" class="notes-stack" aria-live="polite"></div>
+      <p id="all-balloons-done" class="all-done-banner hidden">
+        Saare 5 notes unlock ho gaye!
+      </p>
+    </div>
+  </section>
+
+  <section id="stage-5" class="stage hidden" aria-label="Secret Birthday Letter">
+    <div class="scrapbook-frame letter-frame">
+      <p class="frame-top-heading">💌 BIRTHDAY NOTE FOR YOU 💌</p>
+
+      <div id="envelope-scene" class="envelope-scene">
+        <button id="envelope-btn" class="envelope-box" type="button" aria-label="Open Secret Envelope">
+          <div class="env-back"></div>
+          <div class="env-letter-preview">
+            <span>For You</span>
+          </div>
+          <div class="env-pocket-left"></div>
+          <div class="env-pocket-right"></div>
+          <div class="env-pocket-bottom"></div>
+          <div class="env-flap" id="env-flap"></div>
+
+          <div class="wax-seal" id="wax-seal">
+            <span class="seal-heart">✨</span>
+            <span id="envelope-initial" class="seal-initial">A</span>
+          </div>
+        </button>
+      </div>
+
+      <div id="letter-paper-card" class="letter-paper-card hidden">
+        <div class="letter-paper-header">
+          <span class="paper-stamp">💌 Special Birthday Note</span>
+          <span class="paper-date">24 Dec 2026</span>
+        </div>
+
+        <div id="letter-lines-container" class="letter-lines-container" aria-live="polite"></div>
+
+        <div id="final-celebration-footer" class="final-footer hidden">
+          <h3 id="final-wish-banner" class="final-wish-banner">
+            Once Again, Happy Birthday Someone Special!
+          </h3>
+          <button id="replay-btn" class="replay-btn" type="button">
+            Dobara Dekho ↻
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
