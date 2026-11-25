@@ -1,7 +1,7 @@
 const CONFIG = {
   birthdayPersonName: 'Someone Special',
   envelopeInitial: 'A',
-  targetDateIST: '2026-12-24T00:00:00+05:30',
+  targetDateIST: '2026-10-24T00:00:00+05:30',
   musicFile: '',
 
   stage2BirthdayTitle: 'Happy Birthday Someone Special!',
