@@ -9,10 +9,27 @@
 <body>
   <div id="ambient-layer" aria-hidden="true"></div>
 
-  <button id="music-toggle" class="music-btn" type="button" aria-label="Music On/Off" title="Music On/Off">
-    <span class="music-icon">🔇</span>
-    <span class="music-label">Music Off</span>
-  </button>
+  <!-- Feature 1: Magical Welcome Transition Overlay -->
+  <div id="magical-welcome-overlay" class="magical-welcome-overlay hidden" aria-hidden="true">
+    <div class="welcome-glow-orb"></div>
+    <div id="welcome-particles-layer" class="welcome-particles-layer"></div>
+    <div class="welcome-center-card">
+      <p class="welcome-sparkle-tag">✨ THE WAIT IS OVER ✨</p>
+      <h2 class="welcome-headline">A Magical Birthday Surprise Awaits...</h2>
+    </div>
+  </div>
+
+  <!-- Enhanced Music & Volume Controller -->
+  <div id="music-controller" class="music-controller" role="region" aria-label="Background Music Controls">
+    <button id="music-toggle" class="music-btn" type="button" aria-label="Music On/Off" title="Music On/Off">
+      <span class="music-icon">🔇</span>
+      <span class="music-label">Music Off</span>
+    </button>
+    <div class="volume-control-wrap" title="Volume">
+      <span class="volume-icon" aria-hidden="true">🔈</span>
+      <input id="music-volume" class="music-volume-slider" type="range" min="0" max="1" step="0.05" value="0.55" aria-label="Music Volume" />
+    </div>
+  </div>
   <audio id="bg-music" loop preload="none"></audio>
 
   <section id="stage-1" class="stage active" aria-label="Birthday Countdown">
@@ -50,6 +67,227 @@
     </div>
   </section>
 
+  <!-- NEW PASSWORD LOCK SCREEN (50% / 50% SPLIT) -->
+  <section id="stage-password" class="stage password-lock-stage hidden" aria-label="Secret Password Lock Screen">
+    <div class="pw-split-container">
+      <!-- LEFT 50%: CUTE CARTOON CHARACTER HOLDING BIRTHDAY CAKE -->
+      <div class="pw-left-panel">
+        <div class="pw-left-glow" aria-hidden="true"></div>
+        <div id="pw-left-particles" class="pw-left-particles" aria-hidden="true"></div>
+        <div class="pw-floating-hearts" aria-hidden="true">
+          <span class="pw-float-heart h1">💖</span>
+          <span class="pw-float-heart h2">💗</span>
+          <span class="pw-float-heart h3">💕</span>
+          <span class="pw-float-heart h4">🌸</span>
+          <span class="pw-float-heart h5">✨</span>
+          <span class="pw-float-heart h6">💓</span>
+        </div>
+
+        <div class="pw-character-wrapper" id="pw-character-wrapper">
+          <svg class="cute-cake-character-svg" viewBox="0 0 360 400" role="img" aria-label="Cute cartoon character holding a pink birthday cake with three glowing candles">
+            <defs>
+              <radialGradient id="charAura" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85" />
+                <stop offset="65%" stop-color="#ffd6e0" stop-opacity="0.35" />
+                <stop offset="100%" stop-color="#f3e8ff" stop-opacity="0" />
+              </radialGradient>
+              <linearGradient id="dressGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#ffb3c6" />
+                <stop offset="55%" stop-color="#ff8fab" />
+                <stop offset="100%" stop-color="#fb6f92" />
+              </linearGradient>
+              <linearGradient id="hairGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#6d3b47" />
+                <stop offset="100%" stop-color="#3d1e26" />
+              </linearGradient>
+              <linearGradient id="cakePinkTop" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#ffe5ec" />
+                <stop offset="100%" stop-color="#ff8fab" />
+              </linearGradient>
+              <linearGradient id="cakePinkBase" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#ffc2d1" />
+                <stop offset="100%" stop-color="#fb6f92" />
+              </linearGradient>
+              <radialGradient id="candleFlameGrad" cx="50%" cy="70%" r="55%">
+                <stop offset="0%" stop-color="#fffbe6" />
+                <stop offset="55%" stop-color="#ffd166" />
+                <stop offset="100%" stop-color="#ff6b35" />
+              </radialGradient>
+              <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+                <feGaussianBlur stdDeviation="4" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+
+            <!-- Soft Background Aura & Ground Shadow -->
+            <circle cx="180" cy="200" r="158" fill="url(#charAura)" />
+            <ellipse cx="180" cy="376" rx="88" ry="13" fill="rgba(143, 29, 69, 0.16)" />
+
+            <!-- Back Hair -->
+            <path d="M104 128 C92 185, 96 248, 118 272 C132 286, 152 276, 152 250 L208 250 C208 276, 228 286, 242 272 C264 248, 268 185, 256 128 Z" fill="url(#hairGrad)" />
+
+            <!-- Cute Little Shoes & Legs -->
+            <rect x="150" y="324" width="16" height="38" rx="8" fill="#ffe0d6" />
+            <rect x="194" y="324" width="16" height="38" rx="8" fill="#ffe0d6" />
+            <path d="M142 358 C142 350, 170 350, 170 362 L170 370 L140 370 Z" fill="#ff7597" />
+            <path d="M190 362 C190 350, 218 350, 218 358 L220 370 L190 370 Z" fill="#ff7597" />
+            <circle cx="151" cy="360" r="3" fill="#fff0f5" />
+            <circle cx="209" cy="360" r="3" fill="#fff0f5" />
+
+            <!-- Soft Pink Dress -->
+            <path d="M142 214 L218 214 L244 326 C210 338, 150 338, 116 326 Z" fill="url(#dressGrad)" />
+            <!-- Dress Frill Hem -->
+            <path d="M116 324 Q132 336 148 325 Q164 336 180 325 Q196 336 212 325 Q228 336 244 324 L244 333 Q228 344 212 333 Q196 344 180 333 Q164 344 148 333 Q132 344 116 333 Z" fill="#fff0f5" />
+            <!-- White Peter Pan Collar & Chest Bow -->
+            <path d="M154 212 Q168 230 180 218 Q192 230 206 212 Z" fill="#ffffff" />
+            <path d="M180 223 L167 216 L169 231 Z" fill="#ff3b6b" />
+            <path d="M180 223 L193 216 L191 231 Z" fill="#ff3b6b" />
+            <circle cx="180" cy="223" r="4.5" fill="#ffd166" />
+
+            <!-- Neck -->
+            <rect x="170" y="196" width="20" height="22" rx="9" fill="#ffe0d6" />
+
+            <!-- Cute Round Head -->
+            <circle cx="180" cy="142" r="64" fill="#ffe5dc" />
+
+            <!-- Side Pigtails / Hair Puffs -->
+            <circle cx="112" cy="112" r="24" fill="url(#hairGrad)" />
+            <circle cx="248" cy="112" r="24" fill="url(#hairGrad)" />
+            <!-- Cute Pink Hair Bows -->
+            <g transform="translate(122, 92) rotate(-22)">
+              <path d="M0 0 L-16 -10 L-14 10 Z" fill="#ff4d79" />
+              <path d="M0 0 L16 -10 L14 10 Z" fill="#ff4d79" />
+              <circle cx="0" cy="0" r="5" fill="#ffd166" />
+            </g>
+            <g transform="translate(238, 92) rotate(22)">
+              <path d="M0 0 L-16 -10 L-14 10 Z" fill="#ff4d79" />
+              <path d="M0 0 L16 -10 L14 10 Z" fill="#ff4d79" />
+              <circle cx="0" cy="0" r="5" fill="#ffd166" />
+            </g>
+
+            <!-- Front Bangs -->
+            <path d="M116 136 C116 90, 148 72, 180 72 C212 72, 244 90, 244 136 C234 112, 218 104, 204 118 C196 102, 186 102, 180 120 C174 102, 164 102, 156 118 C142 104, 126 112, 116 136 Z" fill="url(#hairGrad)" />
+
+            <!-- Adorable Sparkling Eyes -->
+            <g class="char-eyes">
+              <ellipse cx="155" cy="146" rx="9.5" ry="11.5" fill="#2b121c" />
+              <ellipse cx="205" cy="146" rx="9.5" ry="11.5" fill="#2b121c" />
+              <circle cx="152" cy="142" r="3.8" fill="#ffffff" />
+              <circle cx="202" cy="142" r="3.8" fill="#ffffff" />
+              <circle cx="158" cy="150" r="1.8" fill="#ffd6e0" />
+              <circle cx="208" cy="150" r="1.8" fill="#ffd6e0" />
+              <path d="M145 139 L141 135" stroke="#2b121c" stroke-width="2.2" stroke-linecap="round" />
+              <path d="M215 139 L219 135" stroke="#2b121c" stroke-width="2.2" stroke-linecap="round" />
+            </g>
+
+            <!-- Soft Eyebrows -->
+            <path d="M145 129 Q155 124 164 129" stroke="#5a2d38" stroke-width="2.5" stroke-linecap="round" fill="none" />
+            <path d="M196 129 Q205 124 215 129" stroke="#5a2d38" stroke-width="2.5" stroke-linecap="round" fill="none" />
+
+            <!-- Rosy Cheeks -->
+            <ellipse cx="139" cy="162" rx="11" ry="6.5" fill="#ff8fab" opacity="0.58" />
+            <ellipse cx="221" cy="162" rx="11" ry="6.5" fill="#ff8fab" opacity="0.58" />
+
+            <!-- Sweet Happy Smile -->
+            <path d="M170 164 Q180 176 190 164" stroke="#b51748" stroke-width="3.2" stroke-linecap="round" fill="none" />
+            <path d="M173 166 Q180 174 187 166 Z" fill="#ff7597" />
+
+            <!-- Arms Holding Cake Plate -->
+            <path d="M138 224 Q112 252 128 278" stroke="#ffe0d6" stroke-width="15" stroke-linecap="round" fill="none" />
+            <path d="M222 224 Q248 252 232 278" stroke="#ffe0d6" stroke-width="15" stroke-linecap="round" fill="none" />
+            <circle cx="136" cy="224" r="14" fill="#ffc2d1" />
+            <circle cx="224" cy="224" r="14" fill="#ffc2d1" />
+
+            <!-- DECORATED PINK BIRTHDAY CAKE HELD IN HANDS -->
+            <g class="held-birthday-cake" transform="translate(0, 6)">
+              <ellipse cx="180" cy="284" rx="68" ry="11" fill="#ffffff" stroke="#e5d4ff" stroke-width="2.5" />
+              <ellipse cx="180" cy="282" rx="58" ry="7" fill="#fff0f5" />
+
+              <!-- Bottom Tier -->
+              <rect x="128" y="246" width="104" height="36" rx="10" fill="url(#cakePinkBase)" />
+              <path d="M128 254 Q138 264 148 254 Q158 264 168 254 Q178 264 188 254 Q198 264 208 254 Q218 264 232 254 L232 248 Q232 244 224 244 L136 244 Q128 244 128 248 Z" fill="#ffffff" />
+              <circle cx="142" cy="272" r="3" fill="#fff0f5" />
+              <circle cx="161" cy="272" r="3" fill="#ffd166" />
+              <circle cx="180" cy="272" r="3" fill="#fff0f5" />
+              <circle cx="199" cy="272" r="3" fill="#ffd166" />
+              <circle cx="218" cy="272" r="3" fill="#fff0f5" />
+
+              <!-- Top Tier -->
+              <rect x="142" y="216" width="76" height="31" rx="9" fill="url(#cakePinkTop)" />
+              <path d="M142 223 Q151 232 161 223 Q170 232 180 223 Q190 232 199 223 Q209 232 218 223 L218 218 Q218 214 210 214 L150 214 Q142 214 142 218 Z" fill="#fff9f2" />
+              <circle cx="158" cy="237" r="2.6" fill="#ff3b6b" />
+              <circle cx="180" cy="238" r="2.8" fill="#ffd166" />
+              <circle cx="202" cy="237" r="2.6" fill="#ff3b6b" />
+
+              <!-- Three Candles -->
+              <g class="pw-cake-candles">
+                <rect x="155" y="192" width="7" height="22" rx="3" fill="#ff7597" />
+                <line x1="158.5" y1="188" x2="158.5" y2="192" stroke="#3b1224" stroke-width="1.5" />
+                <path class="pw-svg-flame f1" d="M158.5 174 C153 181, 154 188, 158.5 188 C163 188, 164 181, 158.5 174 Z" fill="url(#candleFlameGrad)" filter="url(#softGlow)" />
+
+                <rect x="176.5" y="189" width="7" height="25" rx="3" fill="#b388ff" />
+                <line x1="180" y1="185" x2="180" y2="189" stroke="#3b1224" stroke-width="1.5" />
+                <path class="pw-svg-flame f2" d="M180 170 C174.5 177, 175.5 185, 180 185 C184.5 185, 185.5 177, 180 170 Z" fill="url(#candleFlameGrad)" filter="url(#softGlow)" />
+
+                <rect x="198" y="192" width="7" height="22" rx="3" fill="#ff9e7d" />
+                <line x1="201.5" y1="188" x2="201.5" y2="192" stroke="#3b1224" stroke-width="1.5" />
+                <path class="pw-svg-flame f3" d="M201.5 174 C196 181, 197 188, 201.5 188 C206 188, 207 181, 201.5 174 Z" fill="url(#candleFlameGrad)" filter="url(#softGlow)" />
+              </g>
+            </g>
+
+            <!-- Cute Hands on Sides of Plate -->
+            <circle cx="124" cy="284" r="9" fill="#ffe0d6" />
+            <circle cx="236" cy="284" r="9" fill="#ffe0d6" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- RIGHT 50%: ROMANTIC PASSWORD DIAL PAD + FALLING ROSE PETALS -->
+      <div class="pw-right-panel">
+        <div id="pw-rose-petals-layer" class="pw-rose-petals-layer" aria-hidden="true"></div>
+        <div id="pw-success-burst-layer" class="pw-success-burst-layer" aria-hidden="true"></div>
+
+        <div class="pw-keypad-card" id="pw-keypad-card">
+          <p class="pw-top-badge">🔒 SECRET SURPRISE GATE</p>
+          <h2 class="pw-heading">One Last Little Surprise...</h2>
+          <p class="pw-subheading">Enter the Secret Password ❤️</p>
+
+          <!-- Circular Password Dots -->
+          <div id="pw-dots-row" class="pw-dots-row" role="status" aria-label="Password length indicator"></div>
+
+          <!-- Feedback / Error / Success Banner -->
+          <p id="pw-feedback-msg" class="pw-feedback-msg" aria-live="polite"></p>
+
+          <!-- Numeric Phone-Style Dial Pad -->
+          <div class="pw-dial-pad" id="pw-dial-pad" role="group" aria-label="Numeric Password Keypad">
+            <button type="button" class="pw-key" data-digit="1">1</button>
+            <button type="button" class="pw-key" data-digit="2">2</button>
+            <button type="button" class="pw-key" data-digit="3">3</button>
+
+            <button type="button" class="pw-key" data-digit="4">4</button>
+            <button type="button" class="pw-key" data-digit="5">5</button>
+            <button type="button" class="pw-key" data-digit="6">6</button>
+
+            <button type="button" class="pw-key" data-digit="7">7</button>
+            <button type="button" class="pw-key" data-digit="8">8</button>
+            <button type="button" class="pw-key" data-digit="9">9</button>
+
+            <button type="button" class="pw-key pw-key-fn pw-key-clear" id="pw-clear-btn" aria-label="Clear">C</button>
+            <button type="button" class="pw-key" data-digit="0">0</button>
+            <button type="button" class="pw-key pw-key-fn pw-key-back" id="pw-back-btn" aria-label="Backspace">⌫</button>
+          </div>
+
+          <button type="button" class="pw-enter-btn" id="pw-enter-btn">
+            Unlock Surprise ✓
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="stage-2" class="stage hidden" aria-label="Bow Balloon and Heart Tree">
     <div class="scrapbook-frame">
       <p class="frame-top-heading">🎉 BIRTHDAY SURPRISE 🎉</p>
@@ -58,13 +296,15 @@
         <div class="cupid-arena" id="cupid-arena">
           <div id="bow-wrapper" class="bow-wrapper" role="button" tabindex="0" aria-label="Bow">
             <svg id="bow-svg" class="bow-svg" viewBox="0 0 150 170" fill="none">
-              <path id="bow-limb" d="M102 16 C32 45, 32 125, 102 154" stroke="#8d3b52" stroke-width="7" stroke-linecap="round"/>
-              <path d="M102 16 C38 47, 38 123, 102 154" stroke="#f7b2c4" stroke-width="3" stroke-linecap="round"/>
-              <path id="bow-string-path" d="M102 16 L102 85 L102 154" stroke="#fff5f7" stroke-width="2.5" stroke-linecap="round"/>
-              <circle cx="102" cy="16" r="5" fill="#ffd166"/>
-              <circle cx="102" cy="154" r="5" fill="#ffd166"/>
+              <path id="bow-limb" d="M48 16 C118 45, 118 125, 48 154" stroke="#8d3b52" stroke-width="7" stroke-linecap="round"/>
+              <path id="bow-limb-inner" d="M48 16 C112 47, 112 123, 48 154" stroke="#f7b2c4" stroke-width="3" stroke-linecap="round"/>
+              <rect x="97" y="75" width="9" height="20" rx="4.5" fill="#6d293d" />
+              <path id="bow-string-path" d="M48 16 L48 85 L48 154" stroke="#fff5f7" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="48" cy="16" r="5" fill="#ffd166"/>
+              <circle cx="48" cy="154" r="5" fill="#ffd166"/>
             </svg>
             <div id="flying-arrow" class="flying-arrow">
+              <div class="arrow-trail" id="arrow-trail"></div>
               <svg viewBox="0 0 140 30" fill="none">
                 <line x1="10" y1="15" x2="115" y2="15" stroke="#8d3b52" stroke-width="4" stroke-linecap="round"/>
                 <polygon points="112,6 136,15 112,24" fill="#ff3b6b"/>
@@ -89,8 +329,27 @@
       </div>
 
       <div id="stage2-part-b" class="sub-view hidden">
-        <div class="tree-scene">
+        <div class="tree-scene" id="tree-scene">
+          <div class="tree-ambient-glow" aria-hidden="true"></div>
+          <div id="tree-fireflies-layer" class="tree-fx-layer" aria-hidden="true"></div>
+          <div id="tree-falling-hearts-layer" class="tree-fx-layer" aria-hidden="true"></div>
           <svg id="heart-tree-svg" viewBox="0 0 360 390" class="heart-tree-svg">
+            <defs>
+              <filter id="heart-glow-filter" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur stdDeviation="2.4" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+              <filter id="fairy-light-glow" x="-60%" y="-60%" width="220%" height="220%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
             <ellipse cx="180" cy="364" rx="95" ry="14" fill="rgba(181, 23, 72, 0.14)"/>
             <g id="tree-trunk-group" class="tree-trunk-group">
               <path d="M164 362 Q170 290 168 230 Q145 195 102 168 Q138 175 168 202 Q165 155 142 115 Q168 142 180 178 Q192 140 218 112 Q196 155 192 200 Q222 174 260 165 Q218 196 194 230 Q192 290 198 362 Z" fill="#6f4536"/>
@@ -101,17 +360,22 @@
               <path d="M228 185 Q260 185 282 196" stroke="#6f4536" stroke-width="6" stroke-linecap="round" fill="none"/>
             </g>
             <g id="tree-hearts-canopy"></g>
+            <g id="tree-fairy-lights"></g>
           </svg>
         </div>
+        <p id="tree-romantic-quote" class="tree-romantic-quote">
+          "Every little heart on this tree blooms with wishes of joy, warmth, and endless smiles for you."
+        </p>
       </div>
     </div>
   </section>
 
   <section id="stage-3" class="stage hidden" aria-label="Birthday Cake">
     <div class="scrapbook-frame cake-frame">
+      <div id="cake-fireworks-layer" class="cake-fireworks-layer" aria-hidden="true"></div>
       <p class="frame-top-heading">🎂 BIRTHDAY CAKE TIME 🎂</p>
 
-      <div class="cake-stage-area">
+      <div id="cake-stage-area" class="cake-stage-area">
         <div id="candles-row" class="candles-row">
           <div class="candle-unit" data-candle="1">
             <div class="flame" id="flame-1"></div>
@@ -154,13 +418,28 @@
       </div>
 
       <p id="candle-instruction" class="candle-instruction hidden">Chalo, ab candles blow karo!</p>
+
       <div id="cake-birthday-msg" class="cake-birthday-msg hidden"></div>
+      <div id="cake-touch-continue" class="touch-continue-hint touch-continue-light hidden" role="button" tabindex="0" aria-label="Touch to Continue">
+        <span class="touch-sparkle s1" aria-hidden="true">✨</span>
+        <span class="touch-continue-label">Touch to Continue</span>
+        <span class="touch-sparkle s2" aria-hidden="true">✨</span>
+      </div>
     </div>
   </section>
 
   <section id="stage-4" class="stage hidden" aria-label="Five Balloons and Notes">
     <div class="scrapbook-frame balloons-frame">
+      <div class="notes-scrapbook-sparkles" aria-hidden="true">
+        <span class="sb-star st1">✦</span>
+        <span class="sb-star st2">✧</span>
+        <span class="sb-star st3">✦</span>
+        <span class="sb-star st4">♡</span>
+        <span class="sb-star st5">✧</span>
+        <span class="sb-star st6">♡</span>
+      </div>
       <p class="frame-top-heading">🎈 FIVE SURPRISE BALLOONS 🎈</p>
+      <p class="notes-subtitle-tag">Just for you ♡</p>
       <div id="balloons-sky" class="balloons-sky"></div>
       <div id="notes-stack" class="notes-stack" aria-live="polite"></div>
       <p id="all-balloons-done" class="all-done-banner hidden">
@@ -170,6 +449,7 @@
   </section>
 
   <section id="stage-5" class="stage hidden" aria-label="Secret Birthday Letter">
+    <div id="rose-petals-layer" class="rose-petals-layer" aria-hidden="true"></div>
     <div class="scrapbook-frame letter-frame">
       <p class="frame-top-heading">💌 BIRTHDAY NOTE FOR YOU 💌</p>
 
@@ -185,6 +465,7 @@
           <div class="env-flap" id="env-flap"></div>
 
           <div class="wax-seal" id="wax-seal">
+            <span class="seal-ring"></span>
             <span class="seal-heart">✨</span>
             <span id="envelope-initial" class="seal-initial">A</span>
           </div>
@@ -197,19 +478,63 @@
           <span class="paper-date">24 Dec 2026</span>
         </div>
 
-        <div id="letter-lines-container" class="letter-lines-container" aria-live="polite"></div>
+        <div id="letter-scroll-viewport" class="letter-scroll-viewport">
+          <div id="letter-lines-container" class="letter-lines-container" aria-live="polite"></div>
 
-        <div id="final-celebration-footer" class="final-footer hidden">
-          <h3 id="final-wish-banner" class="final-wish-banner">
-            Once Again, Happy Birthday Someone Special!
-          </h3>
-          <button id="replay-btn" class="replay-btn" type="button">
-            Dobara Dekho ↻
-          </button>
+          <div id="letter-end-heart-ornament" class="letter-end-heart-ornament hidden" aria-hidden="true">
+            <span class="letter-glow-heart">💖</span>
+          </div>
+
+          <!-- Feature 4: Secret Message Button at the End of the Letter -->
+          <div id="secret-msg-section" class="secret-msg-section hidden">
+            <button id="secret-msg-btn" class="secret-msg-btn" type="button">
+              ✨ Tap to Unlock Secret Message ✨
+            </button>
+            <div id="secret-msg-reveal" class="secret-msg-reveal hidden">
+              <p class="secret-msg-text">
+                May every wish you make today turn into reality—you deserve all the happiness in the world! 💖
+              </p>
+            </div>
+          </div>
+
+          <div id="final-celebration-footer" class="final-footer hidden">
+            <h3 id="final-wish-banner" class="final-wish-banner">
+              Once Again, Happy Birthday Adina!
+            </h3>
+            <div id="letter-touch-continue" class="touch-continue-hint touch-continue-light hidden" role="button" tabindex="0" aria-label="Touch to Continue">
+              <span class="touch-sparkle s1" aria-hidden="true">✨</span>
+              <span class="touch-continue-label">Touch to Continue</span>
+              <span class="touch-sparkle s2" aria-hidden="true">✨</span>
+            </div>
+            <button id="replay-btn" class="replay-btn" type="button">
+              Dobara Dekho ↻
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Feature 5: Grand Finale Fireworks Overlay -->
+  <div id="grand-finale-overlay" class="grand-finale-overlay hidden" aria-label="Grand Finale Celebration">
+    <canvas id="finale-fireworks-canvas" class="finale-fireworks-canvas"></canvas>
+    <div id="finale-floating-layer" class="finale-floating-layer" aria-hidden="true"></div>
+    <div class="finale-content-card">
+      <p class="finale-sparkle-tag">🎆 GRAND BIRTHDAY FINALE 🎆</p>
+      <h2 id="finale-main-title" class="finale-main-title">Happy Birthday Adina!</h2>
+      <p id="finale-emotional-msg" class="finale-emotional-msg">
+        Thank you for being such a wonderful part of this journey. May your year ahead shine brighter than every firework in the sky tonight! ✨💖
+      </p>
+      <div class="finale-actions">
+        <button id="finale-close-btn" class="finale-secondary-btn" type="button">
+          Read Letter Again 💌
+        </button>
+        <button id="finale-replay-btn" class="replay-btn" type="button">
+          Dobara Dekho ↻
+        </button>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
